@@ -31,7 +31,8 @@ public class AuthController {
     return "redirect:/login";
   }
 
-  /** ログイン完了処理.
+  /**
+   *ログイン完了処理.
    *
    * @param Model
    */
