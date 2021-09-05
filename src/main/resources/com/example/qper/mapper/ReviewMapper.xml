@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.qper.mapper.ReviewMapper">
+
+  <!-- レビュ―一覧取得 -->
+  <select id="selectReview" resultMap="ReviewMap">
+
+    select
+      rev.title
+     ,rev.content
+     ,rev.email
+     ,rev.created_at
+     ,cat.category_name
+    from
+      review rev
+    inner join
+      category cat
+      on rev.category_id = cat.category_id
+    where
+      rev.del_flg = '0'
+    order by
+      rev.updated_at
+
+  </select>
+  <resultMap id="ReviewMap" type="com.example.qper.entity.ReviewEntity">
+    <id property="postId" column="post_id"/>
+    <result property="title" column="title" />
+    <result property="content" column="content" />
+    <result property="createdAt" column="created_at" />
+    <association property="categoryEntity" resultMap="categoryMap"/>
+  </resultMap>
+
+  <resultMap id="categoryMap" type="com.example.qper.entity.CategoryEntity">
+    <id property="categoryId" column="category_id"/>
+    <result property="categoryName" column="category_name"/>
+  </resultMap>
+</mapper>

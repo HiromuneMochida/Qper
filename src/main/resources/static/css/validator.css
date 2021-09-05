@@ -1,0 +1,7 @@
+@charset "UTF-8";
+/**
+* バリデーションチェック.
+*/
+label.error {
+  color: red;
+}
