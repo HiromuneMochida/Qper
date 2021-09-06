@@ -23,6 +23,7 @@ public class AccountDetailService implements UserDetailsService {
 
   /**
    * ログイン認証.
+   *
    * @param email メールアドレス
    * @return UserDetails
    */

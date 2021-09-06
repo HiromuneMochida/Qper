@@ -17,7 +17,7 @@
         <strong class="form-text">レビュ―一覧</strong>
       </div>
       <div class="card-body">
-        <form th:action="@{/review/list}" th:object="${selectEntiyList}" method="GET">
+        <form th:action="@{/review/getReviewList}" th:object="${selectEntiyList}" method="GET">
           <div th:each="item:${selectEntiyList}">
             <div class="d-flex text-dark pt-2">
               <div class="pb-3 mb-2 small border-bottom w-100">

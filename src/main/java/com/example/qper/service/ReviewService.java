@@ -17,7 +17,7 @@ public class ReviewService {
   /**
    * レビュ―一覧取得.
    *
-   * @param entity
+   * @param entity TBL.review
    * @return レビュ―取得結果
    */
   public List<ReviewEntity> selectReview(ReviewEntity entity) {

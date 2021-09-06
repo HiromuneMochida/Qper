@@ -12,8 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.qper.service.AccountDetailService;
 
-/*
- * 認証設定クラス.
+/**
+ * ユーザー認証設定クラス.
  */
 @Configuration
 @EnableWebSecurity

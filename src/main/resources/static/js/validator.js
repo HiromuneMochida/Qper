@@ -1,8 +1,8 @@
 /**
  * バリデーションチェック.
  */
-const VALIDATE_EMAIL = 'emailを入力してください';
-const VALIDATE_PASSWORD = 'passwordを入力してください';
+const VALIDATE_EMAIL = '*emailを入力してください';
+const VALIDATE_PASSWORD = '*passwordを入力してください';
 
 $(function() {
   $('#login').validate({

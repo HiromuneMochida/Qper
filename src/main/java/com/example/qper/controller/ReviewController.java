@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.qper.entity.ReviewEntity;
+import com.example.qper.form.ReviewForm;
+import com.example.qper.service.OptionService;
 import com.example.qper.service.ReviewService;
+
 /**
  * レビュ―.
  */
@@ -17,22 +20,53 @@ import com.example.qper.service.ReviewService;
 public class ReviewController {
 
   @Autowired
-  private ReviewService service;
+  private ReviewService reviewService;
+
+  @Autowired
+  private OptionService optionService;
 
   /**
-   * レビュ―一覧初期表示.
+   * レビュ―一覧画面初期表示.
    *
-   * @param entity
+   * @param entity TBL.review
    * @param model
    * @return reviewList.html
    */
-  @RequestMapping(value = "/review/list", method = RequestMethod.GET)
-  public String init(ReviewEntity entity, Model model) {
+  @RequestMapping(value = "/review/getReviewList", method = RequestMethod.GET)
+  public String getReviewList(ReviewEntity entity, Model model) {
 
-    List<ReviewEntity> selectEntiyList = service.selectReview(entity);
+    List<ReviewEntity> selectEntiyList = reviewService.selectReview(entity);
 
     model.addAttribute("selectEntiyList", selectEntiyList);
 
     return "reviewList";
+  }
+
+  /**
+   * レビュ―登録画面初期表示.
+   *
+   * @param form レビュ―フォーム
+   * @param model
+   * @return reviewRegist.html
+   */
+  @RequestMapping(value = "/review/getReviewRegist", method = RequestMethod.GET)
+  public String getReviewRegist(ReviewForm form, Model model) {
+
+    model.addAttribute("reviewForm", optionService.initializeReviewForm());
+
+    return "reviewRegist";
+  }
+
+  /**
+   * レビュ―登録処理.
+   *
+   * @param form レビュ―フォーム
+   * @param model
+   * @return reviewList.html
+   */
+  @RequestMapping(value = "/review/postReviewRegist", method = RequestMethod.POST)
+  public String postReviewRegist(ReviewForm form, Model model) {
+
+    return "redirect:/reviewList";
   }
 }
