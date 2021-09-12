@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.qper.common.ConstantValue;
+import com.example.qper.common.Util;
 import com.example.qper.entity.ReviewEntity;
+import com.example.qper.form.ReviewForm;
 import com.example.qper.mapper.ReviewMapper;
 
 @Service
@@ -23,5 +26,30 @@ public class ReviewService {
   public List<ReviewEntity> selectReview(ReviewEntity entity) {
 
     return mapper.selectReview(entity);
+  }
+
+  /**
+   * 新規レビュ―ー投稿.
+   *
+   * @param entity TBL.review
+   */
+  public void insertReview(ReviewForm form) {
+    //ReviewEntityを生成する
+    ReviewEntity entity = new ReviewEntity();
+    //フォームからエンティティに詰めなおす
+    entity.setTitle(form.getTitle());
+    entity.setContent(form.getContent());
+    entity.setEmail(Util.getUserEmail());
+    entity.setCategoryId(form.getCategory());
+
+    if (form.isDisp()) {
+      //チェックが付いている場合
+      entity.setPrivateFlg(ConstantValue.PRIVATE_FLG_ONE);
+    } else {
+      //チェックが付いていない場合
+      entity.setPrivateFlg(ConstantValue.PRIVATE_FLG_ZERO);
+    }
+
+    mapper.insertReview(entity);
   }
 }

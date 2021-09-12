@@ -28,8 +28,11 @@ public class ReviewEntity {
   /** 作成日時 */
   private Date createdAt;
 
-  /** 削除フラグ */
+  /** フラグ(削除) */
   private String delFlg;
+
+  /** フラグ(公開/非公開) */
+  private String privateFlg;
 
   /** TBL.category */
   private CategoryEntity categoryEntity;

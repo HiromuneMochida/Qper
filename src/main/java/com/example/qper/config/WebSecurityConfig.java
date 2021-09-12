@@ -72,6 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
    * 静的リソース許可
    * css
    * img
+   * js
    */
   @Override
   public void configure(WebSecurity web) throws Exception {

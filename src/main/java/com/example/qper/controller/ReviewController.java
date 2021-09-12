@@ -25,6 +25,13 @@ public class ReviewController {
   @Autowired
   private OptionService optionService;
 
+
+  @RequestMapping(value = "/t", method = RequestMethod.GET)
+  public String t(ReviewEntity entity, Model model) {
+
+
+    return "NewFile";
+  }
   /**
    * レビュ―一覧画面初期表示.
    *
@@ -67,6 +74,8 @@ public class ReviewController {
   @RequestMapping(value = "/review/postReviewRegist", method = RequestMethod.POST)
   public String postReviewRegist(ReviewForm form, Model model) {
 
-    return "redirect:/reviewList";
+    reviewService.insertReview(form);
+
+    return "redirect:/review/getReviewList";
   }
 }

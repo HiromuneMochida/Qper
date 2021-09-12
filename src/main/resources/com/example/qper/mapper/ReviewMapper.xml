@@ -11,6 +11,7 @@
       rev.title
      ,rev.content
      ,rev.email
+     ,rev.private_flg
      ,rev.created_at
      ,cat.category_name
     from
@@ -28,6 +29,8 @@
     <id property="postId" column="post_id"/>
     <result property="title" column="title" />
     <result property="content" column="content" />
+    <result property="privateFlg" column="private_flg" />
+    <result property="email" column="email" />
     <result property="createdAt" column="created_at" />
     <association property="categoryEntity" resultMap="categoryMap"/>
   </resultMap>
@@ -36,4 +39,24 @@
     <id property="categoryId" column="category_id"/>
     <result property="categoryName" column="category_name"/>
   </resultMap>
+
+  <!-- 新規レビュ―ー投稿 -->
+  <insert id="insertReview"
+    parameterType="com.example.qper.entity.ReviewEntity">
+  insert into
+    review(
+    title
+   ,content
+   ,email
+   ,private_flg
+   ,category_id
+    )
+  values(
+    #{title,jdbcType=VARCHAR}
+   ,#{content,jdbcType=VARCHAR}
+   ,#{email,jdbcType=VARCHAR}
+   ,#{privateFlg,jdbcType=VARCHAR}
+   ,#{categoryId,jdbcType=VARCHAR}
+  )
+  </insert>
 </mapper>

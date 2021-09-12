@@ -24,7 +24,10 @@ public class ReviewForm {
   /** 画面表示するカテゴリー */
   private List<Option> categoryOptions;
 
-  /** 削除チェックボックス */
+  /** チェックボックス（削除） */
   private String[] postId;
+
+  /** チェックボックス（公開/非公開） */
+  private boolean disp;
 
 }
