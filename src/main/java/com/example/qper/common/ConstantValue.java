@@ -20,6 +20,4 @@ public class ConstantValue {
   /** フラグ(公開/非公開) */
   public static final String PRIVATE_FLG_ZERO = "0";
 
-  /** カテゴリーID（無選択） */
-  public static final String CATEGORY_ID_OTHER = "0";
 }
