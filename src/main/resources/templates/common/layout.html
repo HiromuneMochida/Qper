@@ -2,19 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <header th:fragment="header">
   <!-- 共通レイアウトヘッダー -->
-  <nav class="navbar navbar-expand fixed-top navbar-dark bg-dark p-1">
-    <a href="/home" class="navbar-brand">Qper</a>
-    <ul class="navbar-nav">
-      <li class="nav-item"><a href="/review/getReviewList" class="nav-link">
-          <small>レビュ―</small>
-        </a></li>
-      <li class="nav-item"><a href="/review/getReviewRegist" class="nav-link">
-          <small>新規レビュ―</small>
-        </a></li>
-      <li class="nav-item"><a href="" class="nav-link"></a></li>
-    </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <a class="navbar-brand" href="/home">Qper</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="Navber">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <small>レビュ―</small>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/review/getReviewList">レビュ―一覧</a>
+            <a class="dropdown-item" href="/review/getReviewRegist">レビュ―作成</a>
+            <a class="dropdown-item" href="">レビュ―削除</a>
+          </div></li>
+        <li class="nav-item"></li>
+      </ul>
+    </div>
   </nav>
-  <br>
   <div class="form-group float-end">
     <br>
     <form method="post" th:action="@{/logout}">
@@ -22,6 +28,5 @@
     </form>
   </div>
   <br>
-
 </header>
 </html>

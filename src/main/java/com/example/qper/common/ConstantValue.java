@@ -14,10 +14,10 @@ public class ConstantValue {
   /** 初期設定 */
   public static final String DEFAULT_VALUE_ZERO = "0";
 
-  /** フラグ(公開/非公開) */
-  public static final String PRIVATE_FLG_ONE = "1";
+  /** フラグ "1"(公開/非公開) */
+  public static final String PRIVATE_FLG_ON = "1";
 
-  /** フラグ(公開/非公開) */
-  public static final String PRIVATE_FLG_ZERO = "0";
+  /** フラグ "0"(公開/非公開) */
+  public static final String PRIVATE_FLG_OFF = "0";
 
 }

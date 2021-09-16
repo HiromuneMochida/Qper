@@ -44,10 +44,10 @@ public class ReviewService {
 
     if (form.isDisp()) {
       //チェックが付いている場合
-      entity.setPrivateFlg(ConstantValue.PRIVATE_FLG_ONE);
+      entity.setPrivateFlg(ConstantValue.PRIVATE_FLG_ON);
     } else {
       //チェックが付いていない場合
-      entity.setPrivateFlg(ConstantValue.PRIVATE_FLG_ZERO);
+      entity.setPrivateFlg(ConstantValue.PRIVATE_FLG_OFF);
     }
 
     mapper.insertReview(entity);

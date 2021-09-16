@@ -25,13 +25,6 @@ public class ReviewController {
   @Autowired
   private OptionService optionService;
 
-
-  @RequestMapping(value = "/t", method = RequestMethod.GET)
-  public String t(ReviewEntity entity, Model model) {
-
-
-    return "NewFile";
-  }
   /**
    * レビュ―一覧画面初期表示.
    *
