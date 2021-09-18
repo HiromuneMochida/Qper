@@ -28,4 +28,8 @@ public class ConstantValue {
 
   /** 表示件数上限値 */
   public static final int PAGE_LIMIT = 5;
+
+  public static final boolean PRIVATE_FLG_TRUE = true;
+
+  public static final boolean PRIVATE_FLG_FALSE = false;
 }

@@ -21,7 +21,8 @@
   <select id="selectReview" parameterType="com.example.qper.entity.ReviewEntity"
     resultMap="ReviewMap">
     SELECT
-      rev.title
+      rev.post_id
+     ,rev.title
      ,rev.content
      ,rev.email
      ,rev.private_flg
@@ -64,7 +65,7 @@
    ,private_flg
    ,category_id
     )
-  VALEUS(
+  VALUES(
     #{title,jdbcType=VARCHAR}
    ,#{content,jdbcType=VARCHAR}
    ,#{email,jdbcType=VARCHAR}
@@ -72,5 +73,32 @@
    ,#{categoryId,jdbcType=VARCHAR}
   )
   </insert>
+
+  <!-- レビュ―をpostId毎に取得する -->
+  <select id="findReviewByPostId" parameterType="com.example.qper.entity.ReviewEntity"
+    resultType="com.example.qper.entity.ReviewEntity">
+  SELECT
+    rev.title
+   ,rev.content
+   ,rev.private_flg
+  FROM
+    review rev
+  WHERE
+    post_id = #{postId}
+
+  </select>
+
+  <!-- レビュ―更新 -->
+  <update id="updateReview" parameterType="com.example.qper.form.ReviewForm">
+  UPDATE
+    review rev
+  SET
+    rev.title = #{title,jdbcType=VARCHAR}
+   ,rev.content = #{content,jdbcType=VARCHAR}
+   ,rev.private_flg = #{privateFlg,jdbcType=VARCHAR}
+  WHERE
+    rev.post_id = #{postId}
+
+  </update>
 
 </mapper>

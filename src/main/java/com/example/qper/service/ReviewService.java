@@ -15,7 +15,10 @@ import com.example.qper.mapper.ReviewMapper;
 public class ReviewService {
 
   @Autowired
+
   private ReviewMapper mapper;
+  @Autowired
+  private OptionService optionService;
 
   /**
    * レビュ―一覧取得.
@@ -37,6 +40,45 @@ public class ReviewService {
   public int countReview(ReviewEntity entity) {
 
     return mapper.countReview(entity);
+  }
+
+  /**
+   * レビュ―をpostId毎に取得する.
+   *
+   * @param postId
+   */
+  public ReviewEntity findReviewByPostId(int postId) {
+
+    return mapper.findReviewByPostId(postId);
+  }
+
+  /**
+   * レビュ―を更新する.
+   *
+   * @param postId
+   */
+  public int updeteReview(ReviewForm form) {
+
+    return mapper.updateReview(form);
+  }
+
+  public ReviewForm entityToEditForm(ReviewEntity entity, ReviewForm form) {
+
+    form.setTitle(entity.getTitle());
+    form.setContent(entity.getContent());
+    form.setCategory(entity.getCategoryId());
+    form.setCategoryOptions(optionService.selectCategory());
+
+    if (entity.getPrivateFlg().equals(ConstantValue.PRIVATE_FLG_ON)) {
+
+      form.setDisp(ConstantValue.PRIVATE_FLG_TRUE);
+
+    } else if (entity.getPrivateFlg().equals(ConstantValue.PRIVATE_FLG_OFF)) {
+
+      form.setDisp(ConstantValue.PRIVATE_FLG_FALSE);
+
+    }
+    return form;
   }
 
   /**

@@ -17,10 +17,10 @@
   <div class="container">
     <div class="card card-main mt-5">
       <div class="card-header">
-        <strong class="form-text">レビュ―作成</strong>
+        <strong class="form-text">レビュ―編集</strong>
       </div>
       <div class="card-body">
-        <form th:action="@{/review/postReviewRegist}" th:object="${reviewForm}" method="POST">
+        <form th:action="@{/review/postReviewEdit/{postId}(postId=*{postId})}" th:object="${reviewEditForm}" method="POST">
           <div class="mb-3">
             <strong class="form-label">
               <small>タイトル</small>

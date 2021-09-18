@@ -12,6 +12,9 @@ import lombok.Data;
 @Data
 public class ReviewForm {
 
+  /** 投稿ID */
+  private Integer postId;
+
   /** 投稿タイトル */
   private String title;
 
@@ -25,9 +28,12 @@ public class ReviewForm {
   private List<Option> categoryOptions;
 
   /** チェックボックス（削除） */
-  private String[] postId;
+  private String[] deleteId;
 
   /** チェックボックス（公開/非公開） */
-  private boolean isDisp;
+  private boolean disp;
+
+  /** フラグ(公開/非公開) */
+  private String privateFlg;
 
 }

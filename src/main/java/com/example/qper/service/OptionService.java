@@ -1,8 +1,11 @@
 package com.example.qper.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.qper.common.Option;
 import com.example.qper.form.ReviewForm;
 import com.example.qper.mapper.OptionMapper;
 
@@ -25,6 +28,12 @@ public class OptionService {
     form.setCategoryOptions(mapper.selectCategory());
 
     return form;
+  }
+
+  public List<Option> selectCategory() {
+
+
+    return mapper.selectCategory();
   }
 
 }

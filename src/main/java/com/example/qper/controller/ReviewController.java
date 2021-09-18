@@ -3,6 +3,7 @@ package com.example.qper.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -105,6 +106,49 @@ public class ReviewController {
   public String postReviewRegist(ReviewForm form, Model model) {
 
     reviewService.insertReview(form);
+
+    return "redirect:/review/getReviewList";
+  }
+
+  /**
+   * レビュ―編集画面表示処理.
+   *
+   * @param form レビュ―フォーム
+   * @param model
+   * @return reviewList.html
+   */
+  @RequestMapping(value = "/review/getReviewEdit/{postId}", method = RequestMethod.GET)
+  public String getReviewEdit(@PathVariable("postId") int postId, ReviewForm form, ReviewEntity entity, Model model) {
+
+    entity = reviewService.findReviewByPostId(postId);
+
+    reviewService.entityToEditForm(entity, form);
+
+    model.addAttribute("reviewEditForm", form);
+
+    return "reviewEdit";
+  }
+
+  /**
+   * レビュ―更新処理.
+   *
+   * @param form レビュ―フォーム
+   * @param model
+   * @return reviewList.html
+   */
+  @RequestMapping(value = "/review/postReviewEdit/{postId}", method = RequestMethod.POST)
+  public String postReviewEdit(@PathVariable("postId") int postId, ReviewForm form, ReviewEntity entity, Model model) {
+    form.setPostId(postId);
+    if (form.isDisp() == ConstantValue.PRIVATE_FLG_TRUE) {
+
+      form.setPrivateFlg(ConstantValue.PRIVATE_FLG_ON);
+
+    } else if (form.isDisp() == ConstantValue.PRIVATE_FLG_FALSE) {
+
+      form.setPrivateFlg(ConstantValue.PRIVATE_FLG_OFF);
+
+    }
+    reviewService.updeteReview(form);
 
     return "redirect:/review/getReviewList";
   }

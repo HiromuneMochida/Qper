@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.qper.entity.ReviewEntity;
+import com.example.qper.form.ReviewForm;
 
 /**
  * レビュ―マッパー.
@@ -33,4 +34,18 @@ public interface ReviewMapper {
    * @param entity TBL.review
    */
   public int countReview(ReviewEntity entity);
+
+  /**
+   * レビュ―をpostId毎に取得する.
+   *
+   * @param postId
+   */
+  public ReviewEntity findReviewByPostId(int postId);
+
+  /**
+   * レビュ―を更新する.
+   *
+   * @param レビュ―フォーム
+   */
+  public int updateReview(ReviewForm form);
 }

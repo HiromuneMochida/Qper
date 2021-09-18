@@ -32,6 +32,7 @@
                 <div class="d-inline-block">
                   <span th:text="${item.createdAt}"></span>
                   <span th:text="${item.categoryEntity.categoryName}"></span>
+                  <a th:href="@{/review/getReviewEdit/{postId}(postId=${item.postId})}">編集</a>
                 </div>
               </div>
             </div>
@@ -49,14 +50,18 @@
           <a th:href="|@{/review/getReviewPageView}?pageNo=1|" class="page-link">1</a>
         </li>
         <li class="page-item　mx-2" th:if="${selectReview.pageFrom != 2}">
-          <strong>...</strong>
+          <a href="#" class="page-link">
+            <strong>...</strong>
+          </a>
         </li>
         <li class="page-item" th:each="index:${#numbers.sequence(selectReview.pageFrom,selectReview.pageTo)}" th:if="${selectReview.totalPageCount > 2}"
           th:classappend="${selectReview.currentPage == index ? 'active' : '' }">
           <a th:href="|@{/review/getReviewPageView}?pageNo=${index}|" class="page-link" th:text="${index}"></a>
         </li>
         <li class="page-item　mx-2" th:if="${selectReview.totalPageCount - selectReview.pageTo > 1}">
-          <strong>...</strong>
+          <a href="#" class="page-link">
+            <strong>...</strong>
+          </a>
         </li>
         <li class="page-item" th:if="${selectReview.totalPageCount > 1}" th:classappend="${selectReview.currentPage == selectReview.totalPageCount ? 'active' : ''}">
           <a th:href="|@{/review/getReviewPageView}?pageNo=${selectReview.totalPageCount}|" class="page-link" th:text="${selectReview.totalPageCount}"></a>
