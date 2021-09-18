@@ -27,5 +27,5 @@ public class ConstantValue {
   public static final int PAGE_LIMIT_ZERO = 0;
 
   /** 表示件数上限値 */
-  public static final int PAGE_LIMIT = 10;
+  public static final int PAGE_LIMIT = 5;
 }
