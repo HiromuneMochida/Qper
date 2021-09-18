@@ -29,7 +29,18 @@ public class ReviewService {
   }
 
   /**
-   * 新規レビュ―ー投稿.
+   * レビュ―総件数取得.
+   *
+   * @param entity TBL.review
+   * @return レビュ―総件数
+   */
+  public int countReview(ReviewEntity entity) {
+
+    return mapper.countReview(entity);
+  }
+
+  /**
+   *  新規レビュ―登録.
    *
    * @param entity TBL.review
    */

@@ -25,18 +25,18 @@
         <strong class="form-text">レビュ―一覧</strong>
       </div>
       <div class="card-body">
-        <form th:action="@{/review/getReviewList}" th:object="${selectEntiyList}" method="GET">
-          <div th:each="item:${selectEntiyList}">
+        <form th:action="@{/review/getReviewList}" th:object="${selectReview}" method="GET">
+          <div th:each="item:${selectReview.entities}">
             <div class="d-flex text-dark pt-2">
               <div class="pb-3 mb-2 small border-bottom w-100">
                 <strong class="d-block mb-2" th:text="${item.title}"></strong>
                 <div th:if="${item.privateFlg eq '1'}">
-                  <span class="mb-2" th:text="${item.email}"></span>
+                  <span th:text="${item.email}"></span>
                 </div>
-                <span class="d-block mb-1" th:text="${item.content}"></span>
+                <span class="d-block pt-1" th:text="${item.content}"></span>
                 <div class="d-inline-block">
-                  <span class="mb-2" th:text="${item.createdAt}"></span>
-                  <span class="mb-2" th:text="${item.categoryEntity.categoryName}"></span>
+                  <span th:text="${item.createdAt}"></span>
+                  <span th:text="${item.categoryEntity.categoryName}"></span>
                 </div>
               </div>
             </div>
@@ -44,6 +44,32 @@
           <br>
         </form>
       </div>
+    </div>
+    <div class="p-2">
+      <ul class="pagination">
+        <li class="page-item" th:classappend="${selectReview.currentPage == 1 ? 'disabled' : ''}">
+          <a th:href="|@{/review/getReviewPageView}?pageNo=${selectReview.currentPage-1}|" class="page-link">前へ</a>
+        </li>
+        <li class="page-item" th:classappend="${selectReview.currentPage == 1 ? 'active' : ''}">
+          <a th:href="|@{/review/getReviewPageView}?pageNo=1}|" class="page-link">1</a>
+        </li>
+        <li class="page-item　mx-2" th:if="${selectReview.pageFrom != 2}">
+          <strong>...</strong>
+        </li>
+        <li class="page-item" th:each="index:${#numbers.sequence(selectReview.pageFrom,selectReview.pageTo)}" th:if="${selectReview.totalPageCount > 2}"
+          th:classappend="${selectReview.currentPage == index ? 'active' : '' }">
+          <a th:href="|@{/review/getReviewPageView}?pageNo=${index}|" class="page-link" th:text="${index}"></a>
+        </li>
+        <li class="page-item　mx-2" th:if="${selectReview.totalPageCount - selectReview.pageTo > 1}">
+          <strong>...</strong>
+        </li>
+        <li class="page-item" th:if="${selectReview.totalPageCount > 1}" th:classappend="${selectReview.currentPage == selectReview.totalPageCount ? 'active' : ''}">
+          <a th:href="|@{/review/getReviewPageView}?pageNo=${selectReview.totalPageCount}|" class="page-link" th:text="${selectReview.totalPageCount}"></a>
+        </li>
+        <li class="page-item" th:classappend="${selectReview.currentPage == selectReview.totalPageCount ? 'disabled' : ''}">
+          <a th:href="|@{/review/getReviewPageView}?pageNo=${selectReview.currentPage + 1}|" class="page-link">次へ</a>
+        </li>
+      </ul>
     </div>
   </div>
 </body>

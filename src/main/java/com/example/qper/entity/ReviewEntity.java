@@ -36,4 +36,8 @@ public class ReviewEntity {
 
   /** TBL.category */
   private CategoryEntity categoryEntity;
+
+  private int lowerLimit;
+
+  private int upperLimit;
 }

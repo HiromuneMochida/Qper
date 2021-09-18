@@ -21,9 +21,16 @@ public interface ReviewMapper {
   public List<ReviewEntity> selectReview(ReviewEntity entity);
 
   /**
-   * 新規レビュ―ー投稿.
+   *  新規レビュ―登録.
    *
    * @param entity TBL.review
    */
   public void insertReview(ReviewEntity entity);
+
+  /**
+   * レビュ―総件数取得.
+   *
+   * @param entity TBL.review
+   */
+  public int countReview(ReviewEntity entity);
 }

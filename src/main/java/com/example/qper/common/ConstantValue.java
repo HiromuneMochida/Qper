@@ -20,4 +20,12 @@ public class ConstantValue {
   /** フラグ "0"(公開/非公開) */
   public static final String PRIVATE_FLG_OFF = "0";
 
+  /** 表示ページ開始値 */
+  public static final int PAGE_START = 1;
+
+  /** 表示件数下限値 */
+  public static final int PAGE_LIMIT_ZERO = 0;
+
+  /** 表示件数上限値 */
+  public static final int PAGE_LIMIT = 10;
 }

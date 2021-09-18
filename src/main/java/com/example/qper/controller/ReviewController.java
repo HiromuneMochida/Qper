@@ -1,13 +1,14 @@
 package com.example.qper.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.qper.common.ConstantValue;
+import com.example.qper.common.Pagination;
 import com.example.qper.entity.ReviewEntity;
 import com.example.qper.form.ReviewForm;
 import com.example.qper.service.OptionService;
@@ -35,9 +36,45 @@ public class ReviewController {
   @RequestMapping(value = "/review/getReviewList", method = RequestMethod.GET)
   public String getReviewList(ReviewEntity entity, Model model) {
 
-    List<ReviewEntity> selectEntiyList = reviewService.selectReview(entity);
+    //1ページの表示下限値
+    entity.setLowerLimit(ConstantValue.PAGE_LIMIT_ZERO);
+    //1ページの表示上限値
+    entity.setUpperLimit(ConstantValue.PAGE_LIMIT);
 
-    model.addAttribute("selectEntiyList", selectEntiyList);
+    Pagination<ReviewEntity> selectReview = new Pagination<ReviewEntity>(reviewService.countReview(entity), ConstantValue.PAGE_LIMIT);
+
+    selectReview.moveTo(ConstantValue.PAGE_START);
+    //取得結果を格納する
+    selectReview.setEntities(reviewService.selectReview(entity));
+
+    model.addAttribute("selectReview", selectReview);
+
+    return "reviewList";
+  }
+
+  /**
+   * レビュ―一覧画面切替表示.
+   *
+   * @param entity TBL.review
+   * @param pageNo
+   * @param model
+   * @return reviewList.html
+   */
+  @RequestMapping(value = "/review/getReviewPageView", method = RequestMethod.GET)
+  public String getReviewPageView(@RequestParam("pageNo") int pageNo, ReviewEntity entity, Model model) {
+
+    Pagination<ReviewEntity> selectReview = new Pagination<ReviewEntity>(reviewService.countReview(entity), ConstantValue.PAGE_LIMIT);
+
+    selectReview.moveTo(pageNo);
+
+    //1ページの表示下限値
+    entity.setLowerLimit((pageNo - 1) * ConstantValue.PAGE_LIMIT);
+    //1ページの表示上限値
+    entity.setUpperLimit(ConstantValue.PAGE_LIMIT);
+    //再取得結果を格納する
+    selectReview.setEntities(reviewService.selectReview(entity));
+
+    model.addAttribute("selectReview", selectReview);
 
     return "reviewList";
   }

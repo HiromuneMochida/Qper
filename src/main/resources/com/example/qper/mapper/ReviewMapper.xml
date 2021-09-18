@@ -4,26 +4,39 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.qper.mapper.ReviewMapper">
 
-  <!-- レビュ―一覧取得 -->
-  <select id="selectReview" resultMap="ReviewMap">
+ <!-- レビュ―総件数取得 -->
+  <select id="countReview" parameterType="com.example.qper.entity.ReviewEntity"
+    resultType="int">
+    SELECT
+      COUNT(*)
+    FROM
+      review rev
+    WHERE
+      rev.del_flg = '0'
+    ORDER BY
+      rev.updated_at
+  </select>
 
-    select
+  <!-- レビュ―一覧取得 -->
+  <select id="selectReview" parameterType="com.example.qper.entity.ReviewEntity"
+    resultMap="ReviewMap">
+    SELECT
       rev.title
      ,rev.content
      ,rev.email
      ,rev.private_flg
      ,rev.created_at
      ,cat.category_name
-    from
+    FROM
       review rev
-    inner join
+    INNER JOIN
       category cat
-      on rev.category_id = cat.category_id
-    where
+      ON rev.category_id = cat.category_id
+    WHERE
       rev.del_flg = '0'
-    order by
+    ORDER BY
       rev.updated_at
-
+    LIMIT #{lowerLimit}, #{upperLimit}
   </select>
   <resultMap id="ReviewMap" type="com.example.qper.entity.ReviewEntity">
     <id property="postId" column="post_id"/>
@@ -40,10 +53,10 @@
     <result property="categoryName" column="category_name"/>
   </resultMap>
 
-  <!-- 新規レビュ―ー投稿 -->
+  <!--  新規レビュ―登録 -->
   <insert id="insertReview"
     parameterType="com.example.qper.entity.ReviewEntity">
-  insert into
+  INSERT INTO
     review(
     title
    ,content
@@ -51,7 +64,7 @@
    ,private_flg
    ,category_id
     )
-  values(
+  VALEUS(
     #{title,jdbcType=VARCHAR}
    ,#{content,jdbcType=VARCHAR}
    ,#{email,jdbcType=VARCHAR}
@@ -59,4 +72,5 @@
    ,#{categoryId,jdbcType=VARCHAR}
   )
   </insert>
+
 </mapper>

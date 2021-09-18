@@ -7,16 +7,14 @@
   <!-- 登録済ユーザーを取得する -->
   <select id="identifyUser" parameterType="java.lang.String"
     resultType="com.example.qper.entity.AccountEntity">
-
-    select
+    SELECT
       act.email
      ,act.password
      ,act.role
-    from
+    FROM
       account act
-    where
+    WHERE
       act.email = #{email}
-      and del_flg = '0'
-
+      AND del_flg = '0'
   </select>
 </mapper>

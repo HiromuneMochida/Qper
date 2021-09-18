@@ -28,6 +28,6 @@ public class ReviewForm {
   private String[] postId;
 
   /** チェックボックス（公開/非公開） */
-  private boolean disp;
+  private boolean isDisp;
 
 }

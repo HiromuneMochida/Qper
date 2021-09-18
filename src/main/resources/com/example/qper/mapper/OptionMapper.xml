@@ -7,16 +7,15 @@
   <!-- カテゴリー取得 -->
   <select id="selectCategory"
     resultType="com.example.qper.common.Option">
-
-    select
+    SELECT
       cat.category_id value
      ,cat.category_name text
-    from
+    FROM
       category cat
-    where
+    WHERE
       cat.del_flg = '0'
-    order by
+    ORDER BY
       cat.category_id
-
   </select>
+
 </mapper>
