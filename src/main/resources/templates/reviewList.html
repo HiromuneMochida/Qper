@@ -30,9 +30,9 @@
                 </div>
                 <span class="d-block pt-1" th:text="${item.content}"></span>
                 <div class="d-inline-block">
-                  <span th:text="${item.createdAt}"></span>
+                  <span th:text="${#dates.format(item.createdAt, 'yyyy/MM/dd HH:mm')}"></span>
                   <span th:text="${item.categoryEntity.categoryName}"></span>
-                  <a th:href="@{/review/getReviewEdit/{postId}(postId=${item.postId})}">編集</a>
+                  <a class="edit fas fa-edit px-4" th:href="@{/review/getReviewEdit/{postId}(postId=${item.postId})}"></a>
                 </div>
               </div>
             </div>

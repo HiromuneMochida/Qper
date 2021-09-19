@@ -62,7 +62,7 @@ public class ReviewService {
     return mapper.updateReview(form);
   }
 
-  public ReviewForm entityToEditForm(ReviewEntity entity, ReviewForm form) {
+  public ReviewForm entityToForm(ReviewEntity entity, ReviewForm form) {
 
     form.setTitle(entity.getTitle());
     form.setContent(entity.getContent());

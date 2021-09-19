@@ -122,7 +122,7 @@ public class ReviewController {
 
     entity = reviewService.findReviewByPostId(postId);
 
-    reviewService.entityToEditForm(entity, form);
+    reviewService.entityToForm(entity, form);
 
     model.addAttribute("reviewEditForm", form);
 

@@ -2,12 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<!-- Bootstrap CSS -->
+<!-- Bootstrap css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
   crossorigin="anonymous">
-<meta charset="UTF-8">
 <meta th:replace="common/script :: script">
-<link rel="stylesheet" th:href="@{/css/reviewRegist.css}">
+<!-- css -->
+<link rel="stylesheet" th:href="@{/css/reviewEdit.css}">
+<link rel="stylesheet" th:href="@{/css/validator.css}">
 <title>Qper review regist</title>
 </head>
 <body>
@@ -20,7 +21,7 @@
         <strong class="form-text">レビュ―編集</strong>
       </div>
       <div class="card-body">
-        <form th:action="@{/review/postReviewEdit/{postId}(postId=*{postId})}" th:object="${reviewEditForm}" method="POST">
+        <form id="editForm" th:action="@{/review/postReviewEdit/{postId}(postId=*{postId})}" th:object="${reviewEditForm}" method="POST">
           <div class="mb-3">
             <strong class="form-label">
               <small>タイトル</small>
