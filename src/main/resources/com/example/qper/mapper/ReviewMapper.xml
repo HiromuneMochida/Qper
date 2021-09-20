@@ -85,7 +85,6 @@
     review rev
   WHERE
     post_id = #{postId}
-
   </select>
 
   <!-- レビュ―更新 -->
@@ -98,7 +97,16 @@
    ,rev.private_flg = #{privateFlg,jdbcType=VARCHAR}
   WHERE
     rev.post_id = #{postId}
+  </update>
 
+  <!-- レビュ―削除 -->
+  <update id="deleteReview" parameterType="String">
+  UPDATE
+    review rev
+  SET
+    rev.del_flg = '1'
+  WHERE
+    rev.post_id = #{postId}
   </update>
 
 </mapper>

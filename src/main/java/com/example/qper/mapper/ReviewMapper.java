@@ -48,4 +48,11 @@ public interface ReviewMapper {
    * @param レビュ―フォーム
    */
   public int updateReview(ReviewForm form);
+
+  /**
+   * レビュ―を削除する.
+   *
+   * @param postId
+   */
+  public void deleteReview(String postId);
 }

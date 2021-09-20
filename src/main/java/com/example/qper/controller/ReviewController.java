@@ -3,6 +3,7 @@ package com.example.qper.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -149,6 +150,49 @@ public class ReviewController {
 
     }
     reviewService.updeteReview(form);
+
+    return "redirect:/review/getReviewList";
+  }
+
+  /**
+   * レビュ―削除画面表示.
+   *
+   * @param form レビュ―フォーム
+   * @param model
+   * @return reviewDelete.html
+   */
+  @RequestMapping(value = "/review/getReviewDelete", method = RequestMethod.GET)
+  public String getReviewDelete(ReviewForm form, ReviewEntity entity, Model model) {
+
+    //1ページの表示下限値
+    entity.setLowerLimit(ConstantValue.PAGE_LIMIT_ZERO);
+    //1ページの表示上限値
+    entity.setUpperLimit(ConstantValue.PAGE_LIMIT);
+
+    Pagination<ReviewEntity> selectReview = new Pagination<ReviewEntity>(reviewService.countReview(entity), ConstantValue.PAGE_LIMIT);
+
+    selectReview.moveTo(ConstantValue.PAGE_START);
+    //取得結果を格納する
+    selectReview.setEntities(reviewService.selectReview(entity));
+
+    model.addAttribute("selectReview", selectReview);
+
+    model.addAttribute("form", new ReviewForm());
+
+    return "reviewDelete";
+  }
+
+  /**
+   * レビュ―削除処理.
+   *
+   * @param form レビュ―フォーム
+   * @param model
+   * @return reviewList.html
+   */
+  @RequestMapping(value = "/review/postReviewDelete", method = RequestMethod.POST)
+  public String postReviewDelete(@ModelAttribute("form") ReviewForm form, ReviewEntity entity, Model model) {
+
+    reviewService.deleteReview(form);
 
     return "redirect:/review/getReviewList";
   }

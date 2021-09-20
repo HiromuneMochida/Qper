@@ -105,4 +105,19 @@ public class ReviewService {
 
     mapper.insertReview(entity);
   }
+
+  /**
+   *  レビュ―削除.
+   *
+   * @param entity TBL.review
+   */
+  public void deleteReview(ReviewForm form) {
+    if(form.getDeleteId()!=null) {
+      for (String postId : form.getDeleteId()) {
+
+        mapper.deleteReview(postId);
+      }
+    }
+
+  }
 }
