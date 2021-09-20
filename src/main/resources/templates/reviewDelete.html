@@ -25,7 +25,7 @@
             <div class="d-flex text-dark pt-2">
               <div class="pb-3 mb-2 small border-bottom w-100">
                 <div class="d-inline-block">
-                  <input type="checkbox" th:field="*{deleteId}" th:value="${item.postId}">
+                  <input type="checkbox" th:if="${item.email eq authenticatedUser}" th:field="*{deleteId}" th:value="${item.postId}">
                   <strong class="mb-2" th:text="${item.title}"></strong>
                 </div>
                 <div th:if="${item.privateFlg eq '1'}">
@@ -44,7 +44,7 @@
       </div>
     </div>
     <!-- ページャー -->
-    <div th:replace="common/pagination :: pagination(@{/review/getReviewPageView})"></div>
+    <div th:replace="common/pagination :: pagination(@{/review/getReviewDeletePageView})"></div>
   </div>
 </body>
 </html>

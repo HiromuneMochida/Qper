@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.qper.common.ConstantValue;
 import com.example.qper.common.Pagination;
+import com.example.qper.common.Util;
 import com.example.qper.entity.ReviewEntity;
 import com.example.qper.form.ReviewForm;
 import com.example.qper.service.OptionService;
@@ -51,6 +52,8 @@ public class ReviewController {
 
     model.addAttribute("selectReview", selectReview);
 
+    model.addAttribute("authenticatedUser", Util.getUserEmail());
+
     return "reviewList";
   }
 
@@ -66,17 +69,18 @@ public class ReviewController {
   public String getReviewPageView(@RequestParam("pageNo") int pageNo, ReviewEntity entity, Model model) {
 
     Pagination<ReviewEntity> selectReview = new Pagination<ReviewEntity>(reviewService.countReview(entity), ConstantValue.PAGE_LIMIT);
-
+    //ページ移動
     selectReview.moveTo(pageNo);
-
     //1ページの表示下限値
     entity.setLowerLimit((pageNo - 1) * ConstantValue.PAGE_LIMIT);
     //1ページの表示上限値
     entity.setUpperLimit(ConstantValue.PAGE_LIMIT);
-    //再取得結果を格納する
+    //取得結果を格納する
     selectReview.setEntities(reviewService.selectReview(entity));
 
     model.addAttribute("selectReview", selectReview);
+
+    model.addAttribute("authenticatedUser", Util.getUserEmail());
 
     return "reviewList";
   }
@@ -179,6 +183,8 @@ public class ReviewController {
 
     model.addAttribute("form", new ReviewForm());
 
+    model.addAttribute("authenticatedUser", Util.getUserEmail());
+
     return "reviewDelete";
   }
 
@@ -195,5 +201,37 @@ public class ReviewController {
     reviewService.deleteReview(form);
 
     return "redirect:/review/getReviewList";
+  }
+
+  /**
+   * レビュ―削除画面切替表示.
+   *
+   * @param pageNo
+   * @param entity TBL.review
+   * @param form
+   * @param model
+   * @return reviewList.html
+   */
+  @RequestMapping(value = "/review/getReviewDeletePageView", method = RequestMethod.GET)
+  public String getReviewDeletePageView(@RequestParam("pageNo") int pageNo, ReviewEntity entity, ReviewForm form, Model model) {
+
+    Pagination<ReviewEntity> selectReview = new Pagination<ReviewEntity>(reviewService.countReview(entity), ConstantValue.PAGE_LIMIT);
+    //ページ移動
+    selectReview.moveTo(pageNo);
+
+    //1ページの表示下限値
+    entity.setLowerLimit((pageNo - 1) * ConstantValue.PAGE_LIMIT);
+    //1ページの表示上限値
+    entity.setUpperLimit(ConstantValue.PAGE_LIMIT);
+    //取得結果を格納する
+    selectReview.setEntities(reviewService.selectReview(entity));
+
+    model.addAttribute("selectReview", selectReview);
+
+    model.addAttribute("authenticatedUser", Util.getUserEmail());
+
+    model.addAttribute("form", form);
+
+    return "reviewDelete";
   }
 }

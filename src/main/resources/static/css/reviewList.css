@@ -3,9 +3,9 @@
 * レビュ―一覧.
 */
 .card-main {
-  border-top: solid #4b53bc 4px;
+	border-top: solid #4b53bc 4px;
 }
 
-.edit{
+.edit {
 	text-decoration: none;
 }

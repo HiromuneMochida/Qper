@@ -5,3 +5,7 @@
 .card-main {
 	border-top: solid #4b53bc 4px;
 }
+
+.history {
+	text-decoration: none;
+}

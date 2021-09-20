@@ -3,5 +3,9 @@
 * レビュ―新規作成.
 */
 .card-main {
-  border-top: solid #4b53bc 4px;
+	border-top: solid #4b53bc 4px;
+}
+
+.history {
+	text-decoration: none;
 }
