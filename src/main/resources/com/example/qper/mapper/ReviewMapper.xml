@@ -37,8 +37,7 @@
       rev.del_flg = '0'
     ORDER BY
       rev.updated_at
-    LIMIT #{lowerLimit}
-        , #{upperLimit}
+    LIMIT #{lowerLimit}, #{upperLimit}
   </select>
 
   <!--  新規レビュ―登録 -->

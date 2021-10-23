@@ -10,6 +10,7 @@ import com.example.qper.form.ReviewForm;
 
 /**
  * レビュ―マッパー.
+ *
  */
 @Mapper
 public interface ReviewMapper {

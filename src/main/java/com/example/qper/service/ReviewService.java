@@ -119,6 +119,5 @@ public class ReviewService {
         mapper.deleteReview(postId);
       }
     }
-
   }
 }
