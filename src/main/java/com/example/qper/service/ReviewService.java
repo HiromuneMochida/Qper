@@ -24,7 +24,7 @@ public class ReviewService {
   /**
    * レビュ―一覧取得.
    *
-   * @param entity TBL.review
+   * @param dto
    * @return レビュ―取得結果
    */
   public List<SelectReviewDto> selectReview(SelectReviewDto dto) {
@@ -35,7 +35,7 @@ public class ReviewService {
   /**
    * レビュ―総件数取得.
    *
-   * @param entity TBL.review
+   * @param dto
    * @return レビュ―総件数
    */
   public int countReview(SelectReviewDto dto) {
@@ -56,7 +56,7 @@ public class ReviewService {
   /**
    * レビュ―を更新する.
    *
-   * @param postId
+   * @param form
    */
   public int updeteReview(ReviewForm form) {
 
@@ -85,7 +85,7 @@ public class ReviewService {
   /**
    *  新規レビュ―登録.
    *
-   * @param entity TBL.review
+   * @param form
    */
   public void insertReview(ReviewForm form) {
     //ReviewEntityを生成する
@@ -110,7 +110,7 @@ public class ReviewService {
   /**
    *  レビュ―削除.
    *
-   * @param entity TBL.review
+   * @param form
    */
   public void deleteReview(ReviewForm form) {
     if (form.getDeleteId() != null) {

@@ -33,7 +33,7 @@ public class ReviewController {
   /**
    * レビュ―一覧画面初期表示.
    *
-   * @param entity TBL.review
+   * @param dto
    * @param model
    * @return reviewList.html
    */
@@ -62,7 +62,7 @@ public class ReviewController {
   /**
    * レビュ―一覧画面切替表示.
    *
-   * @param dto TBL.review
+   * @param dto
    * @param pageNo
    * @param model
    * @return reviewList.html
@@ -91,7 +91,7 @@ public class ReviewController {
   /**
    * レビュ―登録画面初期表示.
    *
-   * @param form レビュ―フォーム
+   * @param form
    * @param model
    * @return reviewRegist.html
    */
@@ -106,7 +106,7 @@ public class ReviewController {
   /**
    * レビュ―登録処理.
    *
-   * @param form レビュ―フォーム
+   * @param form
    * @param model
    * @return reviewList.html
    */
@@ -121,7 +121,7 @@ public class ReviewController {
   /**
    * レビュ―編集画面表示処理.
    *
-   * @param form レビュ―フォーム
+   * @param form
    * @param model
    * @return reviewList.html
    */
@@ -140,7 +140,7 @@ public class ReviewController {
   /**
    * レビュ―更新処理.
    *
-   * @param form レビュ―フォーム
+   * @param form
    * @param model
    * @return reviewList.html
    */
@@ -165,7 +165,7 @@ public class ReviewController {
   /**
    * レビュ―削除画面表示.
    *
-   * @param form レビュ―フォーム
+   * @param form
    * @param model
    * @return reviewDelete.html
    */
@@ -196,7 +196,7 @@ public class ReviewController {
   /**
    * レビュ―削除処理.
    *
-   * @param form レビュ―フォーム
+   * @param form
    * @param model
    * @return reviewList.html
    */
@@ -212,7 +212,7 @@ public class ReviewController {
    * レビュ―削除画面切替表示.
    *
    * @param pageNo
-   * @param dto TBL.review
+   * @param dto
    * @param form
    * @param model
    * @return reviewList.html

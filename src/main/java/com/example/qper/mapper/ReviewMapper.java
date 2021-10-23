@@ -46,7 +46,7 @@ public interface ReviewMapper {
   /**
    * レビュ―を更新する.
    *
-   * @param レビュ―フォーム
+   * @param form
    */
   public int updateReview(ReviewForm form);
 
