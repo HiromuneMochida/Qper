@@ -34,7 +34,7 @@
                 <span class="d-block pt-1" th:text="${item.content}"></span>
                 <div class="d-inline-block">
                   <span th:text="${#dates.format(item.createdAt, 'yyyy/MM/dd HH:mm')}"></span>
-                  <span th:text="${item.categoryEntity.categoryName}"></span>
+                  <span th:text="${item.categoryName}"></span>
                 </div>
               </div>
             </div>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.qper.common.ConstantValue;
 import com.example.qper.common.Pagination;
 import com.example.qper.common.Util;
+import com.example.qper.dto.SelectReviewDto;
 import com.example.qper.entity.ReviewEntity;
 import com.example.qper.form.ReviewForm;
 import com.example.qper.service.OptionService;
@@ -37,18 +38,19 @@ public class ReviewController {
    * @return reviewList.html
    */
   @RequestMapping(value = "/review/getReviewList", method = RequestMethod.GET)
-  public String getReviewList(ReviewEntity entity, Model model) {
+  public String getReviewList(SelectReviewDto dto, Model model) {
 
     //1ページの表示下限値
-    entity.setLowerLimit(ConstantValue.PAGE_LIMIT_ZERO);
+    dto.setLowerLimit(ConstantValue.PAGE_LIMIT_ZERO);
     //1ページの表示上限値
-    entity.setUpperLimit(ConstantValue.PAGE_LIMIT);
+    dto.setUpperLimit(ConstantValue.PAGE_LIMIT);
 
-    Pagination<ReviewEntity> selectReview = new Pagination<ReviewEntity>(reviewService.countReview(entity), ConstantValue.PAGE_LIMIT);
+    Pagination<SelectReviewDto> selectReview = new Pagination<SelectReviewDto>(reviewService.countReview(dto),
+        ConstantValue.PAGE_LIMIT);
 
     selectReview.moveTo(ConstantValue.PAGE_START);
     //取得結果を格納する
-    selectReview.setEntities(reviewService.selectReview(entity));
+    selectReview.setEntities(reviewService.selectReview(dto));
 
     model.addAttribute("selectReview", selectReview);
 
@@ -60,23 +62,24 @@ public class ReviewController {
   /**
    * レビュ―一覧画面切替表示.
    *
-   * @param entity TBL.review
+   * @param dto TBL.review
    * @param pageNo
    * @param model
    * @return reviewList.html
    */
   @RequestMapping(value = "/review/getReviewPageView", method = RequestMethod.GET)
-  public String getReviewPageView(@RequestParam("pageNo") int pageNo, ReviewEntity entity, Model model) {
+  public String getReviewPageView(@RequestParam("pageNo") int pageNo, SelectReviewDto dto, Model model) {
 
-    Pagination<ReviewEntity> selectReview = new Pagination<ReviewEntity>(reviewService.countReview(entity), ConstantValue.PAGE_LIMIT);
+    Pagination<SelectReviewDto> selectReview = new Pagination<SelectReviewDto>(reviewService.countReview(dto),
+        ConstantValue.PAGE_LIMIT);
     //ページ移動
     selectReview.moveTo(pageNo);
     //1ページの表示下限値
-    entity.setLowerLimit((pageNo - 1) * ConstantValue.PAGE_LIMIT);
+    dto.setLowerLimit((pageNo - 1) * ConstantValue.PAGE_LIMIT);
     //1ページの表示上限値
-    entity.setUpperLimit(ConstantValue.PAGE_LIMIT);
+    dto.setUpperLimit(ConstantValue.PAGE_LIMIT);
     //取得結果を格納する
-    selectReview.setEntities(reviewService.selectReview(entity));
+    selectReview.setEntities(reviewService.selectReview(dto));
 
     model.addAttribute("selectReview", selectReview);
 
@@ -142,7 +145,8 @@ public class ReviewController {
    * @return reviewList.html
    */
   @RequestMapping(value = "/review/postReviewEdit/{postId}", method = RequestMethod.POST)
-  public String postReviewEdit(@PathVariable("postId") int postId, ReviewForm form, ReviewEntity entity, Model model) {
+  public String postReviewEdit(@PathVariable("postId") int postId, ReviewForm form, ReviewEntity entity,
+      Model model) {
     form.setPostId(postId);
     if (form.isDisp() == ConstantValue.PRIVATE_FLG_TRUE) {
 
@@ -166,18 +170,19 @@ public class ReviewController {
    * @return reviewDelete.html
    */
   @RequestMapping(value = "/review/getReviewDelete", method = RequestMethod.GET)
-  public String getReviewDelete(ReviewForm form, ReviewEntity entity, Model model) {
+  public String getReviewDelete(ReviewForm form, SelectReviewDto dto, Model model) {
 
     //1ページの表示下限値
-    entity.setLowerLimit(ConstantValue.PAGE_LIMIT_ZERO);
+    dto.setLowerLimit(ConstantValue.PAGE_LIMIT_ZERO);
     //1ページの表示上限値
-    entity.setUpperLimit(ConstantValue.PAGE_LIMIT);
+    dto.setUpperLimit(ConstantValue.PAGE_LIMIT);
 
-    Pagination<ReviewEntity> selectReview = new Pagination<ReviewEntity>(reviewService.countReview(entity), ConstantValue.PAGE_LIMIT);
+    Pagination<SelectReviewDto> selectReview = new Pagination<SelectReviewDto>(reviewService.countReview(dto),
+        ConstantValue.PAGE_LIMIT);
 
     selectReview.moveTo(ConstantValue.PAGE_START);
     //取得結果を格納する
-    selectReview.setEntities(reviewService.selectReview(entity));
+    selectReview.setEntities(reviewService.selectReview(dto));
 
     model.addAttribute("selectReview", selectReview);
 
@@ -207,24 +212,26 @@ public class ReviewController {
    * レビュ―削除画面切替表示.
    *
    * @param pageNo
-   * @param entity TBL.review
+   * @param dto TBL.review
    * @param form
    * @param model
    * @return reviewList.html
    */
   @RequestMapping(value = "/review/getReviewDeletePageView", method = RequestMethod.GET)
-  public String getReviewDeletePageView(@RequestParam("pageNo") int pageNo, ReviewEntity entity, ReviewForm form, Model model) {
+  public String getReviewDeletePageView(@RequestParam("pageNo") int pageNo, SelectReviewDto dto, ReviewForm form,
+      Model model) {
 
-    Pagination<ReviewEntity> selectReview = new Pagination<ReviewEntity>(reviewService.countReview(entity), ConstantValue.PAGE_LIMIT);
+    Pagination<SelectReviewDto> selectReview = new Pagination<SelectReviewDto>(reviewService.countReview(dto),
+        ConstantValue.PAGE_LIMIT);
     //ページ移動
     selectReview.moveTo(pageNo);
 
     //1ページの表示下限値
-    entity.setLowerLimit((pageNo - 1) * ConstantValue.PAGE_LIMIT);
+    dto.setLowerLimit((pageNo - 1) * ConstantValue.PAGE_LIMIT);
     //1ページの表示上限値
-    entity.setUpperLimit(ConstantValue.PAGE_LIMIT);
+    dto.setUpperLimit(ConstantValue.PAGE_LIMIT);
     //取得結果を格納する
-    selectReview.setEntities(reviewService.selectReview(entity));
+    selectReview.setEntities(reviewService.selectReview(dto));
 
     model.addAttribute("selectReview", selectReview);
 

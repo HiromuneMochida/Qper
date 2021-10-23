@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.qper.common.ConstantValue;
 import com.example.qper.common.Util;
+import com.example.qper.dto.SelectReviewDto;
 import com.example.qper.entity.ReviewEntity;
 import com.example.qper.form.ReviewForm;
 import com.example.qper.mapper.ReviewMapper;
@@ -26,9 +27,9 @@ public class ReviewService {
    * @param entity TBL.review
    * @return レビュ―取得結果
    */
-  public List<ReviewEntity> selectReview(ReviewEntity entity) {
+  public List<SelectReviewDto> selectReview(SelectReviewDto dto) {
 
-    return mapper.selectReview(entity);
+    return mapper.selectReview(dto);
   }
 
   /**
@@ -37,9 +38,9 @@ public class ReviewService {
    * @param entity TBL.review
    * @return レビュ―総件数
    */
-  public int countReview(ReviewEntity entity) {
+  public int countReview(SelectReviewDto dto) {
 
-    return mapper.countReview(entity);
+    return mapper.countReview(dto);
   }
 
   /**
@@ -112,7 +113,7 @@ public class ReviewService {
    * @param entity TBL.review
    */
   public void deleteReview(ReviewForm form) {
-    if(form.getDeleteId()!=null) {
+    if (form.getDeleteId() != null) {
       for (String postId : form.getDeleteId()) {
 
         mapper.deleteReview(postId);

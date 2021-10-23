@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.qper.dto.SelectReviewDto;
 import com.example.qper.entity.ReviewEntity;
 import com.example.qper.form.ReviewForm;
 
@@ -19,7 +20,7 @@ public interface ReviewMapper {
    * @param entity TBL.review
    * @return 取得結果
    */
-  public List<ReviewEntity> selectReview(ReviewEntity entity);
+  public List<SelectReviewDto> selectReview(SelectReviewDto entity);
 
   /**
    *  新規レビュ―登録.
@@ -33,7 +34,7 @@ public interface ReviewMapper {
    *
    * @param entity TBL.review
    */
-  public int countReview(ReviewEntity entity);
+  public int countReview(SelectReviewDto entity);
 
   /**
    * レビュ―をpostId毎に取得する.

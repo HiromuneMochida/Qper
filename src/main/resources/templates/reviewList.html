@@ -31,7 +31,7 @@
                 <span class="d-block pt-1" th:text="${item.content}"></span>
                 <div class="d-inline-block">
                   <span th:text="${#dates.format(item.createdAt, 'yyyy/MM/dd HH:mm')}"></span>
-                  <span th:text="${item.categoryEntity.categoryName}"></span>
+                  <span th:text="${item.categoryName}"></span>
                   <a class="edit fas fa-edit px-4" th:if="${item.email eq authenticatedUser}" th:href="@{/review/getReviewEdit/{postId}(postId=${item.postId})}"></a>
                 </div>
               </div>

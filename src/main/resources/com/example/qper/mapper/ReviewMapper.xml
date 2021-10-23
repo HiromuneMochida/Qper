@@ -18,16 +18,16 @@
   </select>
 
   <!-- レビュ―一覧取得 -->
-  <select id="selectReview" parameterType="com.example.qper.entity.ReviewEntity"
-    resultMap="ReviewMap">
+  <select id="selectReview" parameterType="com.example.qper.dto.SelectReviewDto"
+    resultType="com.example.qper.dto.SelectReviewDto">
     SELECT
-      rev.post_id
-     ,rev.title
-     ,rev.content
-     ,rev.email
-     ,rev.private_flg
-     ,rev.created_at
-     ,cat.category_name
+      rev.post_id AS postId
+     ,rev.title AS title
+     ,rev.content AS content
+     ,rev.email AS email
+     ,rev.private_flg AS privateFlg
+     ,rev.created_at AS createdAt
+     ,cat.category_name AS categoryName
     FROM
       review rev
     INNER JOIN
@@ -39,20 +39,6 @@
       rev.updated_at
     LIMIT #{lowerLimit}, #{upperLimit}
   </select>
-  <resultMap id="ReviewMap" type="com.example.qper.entity.ReviewEntity">
-    <id property="postId" column="post_id"/>
-    <result property="title" column="title" />
-    <result property="content" column="content" />
-    <result property="privateFlg" column="private_flg" />
-    <result property="email" column="email" />
-    <result property="createdAt" column="created_at" />
-    <association property="categoryEntity" resultMap="categoryMap"/>
-  </resultMap>
-
-  <resultMap id="categoryMap" type="com.example.qper.entity.CategoryEntity">
-    <id property="categoryId" column="category_id"/>
-    <result property="categoryName" column="category_name"/>
-  </resultMap>
 
   <!--  新規レビュ―登録 -->
   <insert id="insertReview"
